@@ -5,15 +5,15 @@
 using namespace std;
 
 
-void logs_game(int &command, int &action, int &player){
+void logs_game(int &command, int &action, int &player){ //функция
     
-    setlocale(LC_ALL, "Russian");
+    setlocale(LC_ALL, "Russian"); //ставим русский язык
     
-    ofstream log_file("logs.txt",std::ios::app);
+    ofstream log_file("logs.txt",std::ios::app); //логи
     
-    string action_str;
+    string action_str; 
     
-    if (action == 1) action_str += "Атака";
+    if (action == 1) action_str += "Атака"; //действия
     
     else if (action == 2)    action_str += "Блок";
     
@@ -21,7 +21,7 @@ void logs_game(int &command, int &action, int &player){
     
     else if (action == 4)    action_str += "Ошибка";
 
-    string log = "Команда, получившая очко - " + to_string(command) + ", Действие - " + action_str + ", Игрок - ";
+    string log = "Команда, получившая очко - " + to_string(command) + ", Действие - " + action_str + ", Игрок - "; 
 
     if (player < 0) log += "None";
     
@@ -52,7 +52,7 @@ void bd_log(int &winner_command){
     bd_file.close();
 }
 
-void command_out(int *command_A, int *command_B)
+void command_out(int *command_A, int *command_B) //функция на команды
 {
     cout << "Первая:   Вторая:" << endl;
 
@@ -81,7 +81,7 @@ void command_out(int *command_A, int *command_B)
     } cout << endl;
 }
 
-void permutation(int *command)
+void perestanovka(int *command) //функция перестановок
 
 {
     int num = command[5];
@@ -93,7 +93,7 @@ void permutation(int *command)
     } command[0] = num;
 }
 
-void replacement(int *command,int command_number)
+void zamena(int *command,int command_number) //функция замены игркоов
 {
     int whom, by_whom, i;
     
@@ -166,9 +166,9 @@ void game(int *command_A, int *command_B, int &A_win, int &B_win){
                 
                 cin >> command;
 
-                if (command == 1) replacement(command_A,1);
+                if (command == 1) zamena(command_A,1);
                 
-                else replacement(command_B,2);
+                else zamena(command_B,2);
                 
                 continue;
             }
@@ -230,11 +230,11 @@ void game(int *command_A, int *command_B, int &A_win, int &B_win){
                     
                     A_score++;
                     
-                    permutation(command_A);
+                    perestanovka(command_A);
                     
                 } else{
                     
-                    permutation(command_B);
+                    perestanovka(command_B);
                     
                     B_score++;
                 }
